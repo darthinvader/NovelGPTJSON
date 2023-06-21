@@ -1,0 +1,33 @@
+<form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="m-10 text-gray-300">
+  <div class="form-group mb-4">
+    <label for="name" class="block mb-1 text-xl">Name</label>
+    <input type="text" id="name" formControlName="name" class="w-full px-3 py-2 rounded-lg bg-gray-800 text-gray-300">
+  </div>
+
+  <!-- Other string fields -->
+
+  <div formArrayName="goals" class="my-6 p-6 bg-gray-800 rounded-lg">
+    <h5 class="text-2xl mb-4 text-gray-200">Goals</h5>
+    <div *ngFor="let goal of goals.controls; let i=index" class="mb-4">
+      <label for="goal{{i}}" class="block mb-1">Goal {{i + 1}}</label>
+      <input type="text" id="goal{{i}}" [formControlName]="i" class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-300">
+    </div>
+    <button (click)="addGoal()" type="button" class="btn btn-secondary px-5 py-2 rounded-lg bg-blue-600 text-gray-200">Add Goal</button>
+  </div>
+
+  <!-- Similar blocks for conflicts, motivations, and fears -->
+
+  <div formArrayName="relationships" class="my-6 p-6 bg-gray-800 rounded-lg">
+    <h5 class="text-2xl mb-4 text-gray-200">Relationships</h5>
+    <div *ngFor="let relationship of relationships.controls; let i=index" [formGroupName]="i" class="mb-4">
+      <label for="name{{i}}" class="block mb-1">Name</label>
+      <input type="text" id="name{{i}}" formControlName="name" class="w-full mb-2 px-3 py-2 rounded-lg bg-gray-700 text-gray-300">
+      
+      <label for="relationship{{i}}" class="block mb-1">Relationship</label>
+      <input type="text" id="relationship{{i}}" formControlName="relationship" class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-300">
+    </div>
+    <button (click)="addRelationship()" type="button" class="btn btn-secondary px-5 py-2 rounded-lg bg-blue-600 text-gray-200">Add Relationship</button>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-6 px-5 py-2 rounded-lg bg-blue-500 text-gray-200">Submit</button>
+</form>
