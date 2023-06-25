@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CharacterComponent } from './character/character.component';
 import { CardComponent } from './card/card.component';
+import { TextInputComponent } from './text-input/text-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterComponent,
-    CardComponent
+    CardComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
