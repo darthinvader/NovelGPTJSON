@@ -1,5 +1,5 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="p-6 bg-gray-800 text-white shadow-md rounded-md space-y-6">
-  <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
+<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="p-6 bg-gray-900 text-gray-200 border border-gray-700 rounded-md space-y-6">
+  <div class="pl-4 mt-4 bg-gray-800 p-4 rounded border border-gray-700">
     <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
         <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
           <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
@@ -14,12 +14,12 @@
         </ng-template>
     </ng-container>
   </div>
-  <button type="submit" class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+<button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">Submit</button>
 </form>
 
 <ng-template #object let-controlName="controlName" let-control="control">
     <label class="block text-gray-200 text-md font-bold mb-2">{{ controlName }}</label>
-    <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
+    <div class="pl-4 mt-4 bg-gray-800 p-4 rounded border border-gray-700">
       <ng-container *ngFor="let innerControl of getObjectEntries(control.controls) trackBy: trackByFn">
           <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
             <ng-container *ngTemplateOutlet="object; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
@@ -39,13 +39,13 @@
 <ng-template #value let-controlName="controlName" let-control="control">
   <div class="mb-4">
     <label class="block text-gray-200 text-sm font-bold mb-2">{{ controlName }}</label>
-    <input type="text" [formControl]="control" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 bg-gray-800 leading-tight focus:outline-none focus:shadow-outline">
+<input type="text" [formControl]="control" class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800">
   </div> 
 </ng-template>
 
 <ng-template #array let-controlName="controlName" let-controlArray="control">
     <label class="block text-gray-200 text-md font-bold mb-2 mt-4">{{ controlName }}</label>
-    <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
+    <div class="pl-4 mt-4 bg-gray-800 p-4 rounded border border-gray-700">
       <ng-container *ngFor="let item of controlArray.controls; let i = index; trackBy: trackByFn;">
         <ng-container *ngIf="isFormGroup(item); else notGroup">
           <ng-container *ngTemplateOutlet="object; context:{controlName: i, control: item}"></ng-container>
@@ -59,6 +59,6 @@
           </ng-template>
         </ng-template>
       </ng-container>
-      <button (click)="addToArray(controlArray)">Add Element</button>
+<button (click)="addToArray(controlArray)" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">Add Element</button>
   </div>
 </ng-template>
