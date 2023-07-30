@@ -20,19 +20,19 @@
 <ng-template #object let-controlName="controlName" let-control="control">
     <label class="block text-gray-200 text-md font-bold mb-2">{{ controlName }}</label>
     <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
-    <ng-container *ngFor="let innerControl of getObjectEntries(control.controls) trackBy: trackByFn">
-        <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
-          <ng-container *ngTemplateOutlet="object; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
-        </ng-container>
-        <ng-template #notGroup>
-          <ng-container *ngIf="isFormArray(innerControl.value); else singleControl">
-            <ng-container *ngTemplateOutlet="array; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
+      <ng-container *ngFor="let innerControl of getObjectEntries(control.controls) trackBy: trackByFn">
+          <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
+            <ng-container *ngTemplateOutlet="object; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
           </ng-container>
-          <ng-template #singleControl>
-            <ng-container *ngTemplateOutlet="value; context: {controlName: innerControl.key, control: innerControl.value}"></ng-container>
+          <ng-template #notGroup>
+            <ng-container *ngIf="isFormArray(innerControl.value); else singleControl">
+              <ng-container *ngTemplateOutlet="array; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
+            </ng-container>
+            <ng-template #singleControl>
+              <ng-container *ngTemplateOutlet="value; context: {controlName: innerControl.key, control: innerControl.value}"></ng-container>
+            </ng-template>
           </ng-template>
-        </ng-template>
-    </ng-container>
+      </ng-container>
     </div>
 </ng-template>
 
@@ -46,18 +46,19 @@
 <ng-template #array let-controlName="controlName" let-controlArray="control">
     <label class="block text-gray-200 text-md font-bold mb-2 mt-4">{{ controlName }}</label>
     <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
-    <ng-container *ngFor="let item of controlArray.controls; let i = index; trackBy: trackByFn;">
-          <ng-container *ngIf="isFormGroup(item); else notGroup">
-            <ng-container *ngTemplateOutlet="object; context:{controlName: i, control: item}"></ng-container>
+      <ng-container *ngFor="let item of controlArray.controls; let i = index; trackBy: trackByFn;">
+        <ng-container *ngIf="isFormGroup(item); else notGroup">
+          <ng-container *ngTemplateOutlet="object; context:{controlName: i, control: item}"></ng-container>
+        </ng-container>
+        <ng-template #notGroup>
+          <ng-container *ngIf="isFormArray(item); else controlItem">
+            <ng-container *ngTemplateOutlet="array; context:{controlName: i, control: item}"></ng-container>
           </ng-container>
-          <ng-template #notGroup>
-            <ng-container *ngIf="isFormArray(item); else controlItem">
-              <ng-container *ngTemplateOutlet="array; context:{controlName: i, control: item}"></ng-container>
-            </ng-container>
-            <ng-template #controlItem>
-              <ng-container *ngTemplateOutlet="value; context: {controlName: i, control: item}"></ng-container>
-            </ng-template>
+          <ng-template #controlItem>
+            <ng-container *ngTemplateOutlet="value; context: {controlName: i, control: item}"></ng-container>
           </ng-template>
-    </ng-container>
+        </ng-template>
+      </ng-container>
+      <button (click)="addToArray(controlArray)">Add Element</button>
   </div>
 </ng-template>

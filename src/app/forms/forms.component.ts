@@ -51,6 +51,31 @@ export class FormsComponent implements OnInit {
     return array;
   }
 
+  deepCloneControl(control: AbstractControl): AbstractControl {
+    if (control instanceof FormControl) {
+      return new FormControl(control.value);
+    } else if (control instanceof FormGroup) {
+      const copy: { [key: string]: AbstractControl } = {}; // Explicit typing
+      Object.keys(control.controls).forEach(key => {
+        copy[key] = this.deepCloneControl(control.controls[key]);
+      });
+      return new FormGroup(copy);
+    } else if (control instanceof FormArray) {
+      return new FormArray(control.controls.map(ctrl => this.deepCloneControl(ctrl)));
+    } else {
+      throw new Error(`Unknown form control class: ${control.constructor.name}`);
+    }
+  }
+
+  addToArray(controlArray: FormArray) {
+    if (controlArray.controls.length > 0) {
+      const clone = this.deepCloneControl(controlArray.at(0));
+      clone.reset();
+      controlArray.push(clone);
+    }
+  }
+
+
 
 
   createControl(data: any): FormControl {
