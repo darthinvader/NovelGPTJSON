@@ -1,61 +1,63 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="submit()">
-  <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
-    <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
-      <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="p-6 bg-gray-800 text-white shadow-md rounded-md space-y-6">
+  <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
+    <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
+        <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
+          <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+        </ng-container>
+        <ng-template #notGroup>
+          <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
+            <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+          </ng-container>
+          <ng-template #singleControl>
+            <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
+          </ng-template>
+        </ng-template>
     </ng-container>
-    <ng-template #notGroup>
-      <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
-        <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
-      </ng-container>
-      <ng-template #singleControl>
-        <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
-      </ng-template>
-    </ng-template> 
-  </ng-container>
-  <button type="submit">Submit</button>
+  </div>
+  <button type="submit" class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
 </form>
 
 <ng-template #object let-controlName="controlName" let-control="control">
-    <label>{{ controlName }}</label>
+    <label class="block text-gray-200 text-md font-bold mb-2">{{ controlName }}</label>
+    <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
     <ng-container *ngFor="let innerControl of getObjectEntries(control.controls) trackBy: trackByFn">
-      <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
-        <ng-container *ngTemplateOutlet="object; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
-      </ng-container>
-      <ng-template #notGroup>
-        <ng-container *ngIf="isFormArray(innerControl.value); else singleControl">
-          <ng-container *ngTemplateOutlet="array; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
+        <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
+          <ng-container *ngTemplateOutlet="object; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
         </ng-container>
-        <ng-template #singleControl>
-          <ng-container *ngTemplateOutlet="value; context: {controlName: innerControl.key, control: innerControl.value}"></ng-container>
+        <ng-template #notGroup>
+          <ng-container *ngIf="isFormArray(innerControl.value); else singleControl">
+            <ng-container *ngTemplateOutlet="array; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
+          </ng-container>
+          <ng-template #singleControl>
+            <ng-container *ngTemplateOutlet="value; context: {controlName: innerControl.key, control: innerControl.value}"></ng-container>
+          </ng-template>
         </ng-template>
-      </ng-template>
     </ng-container>
+    </div>
 </ng-template>
 
-
 <ng-template #value let-controlName="controlName" let-control="control">
-  <div>
-    <label>{{ controlName }}</label>
-    <input type="text" [formControl]="control">
+  <div class="mb-4">
+    <label class="block text-gray-200 text-sm font-bold mb-2">{{ controlName }}</label>
+    <input type="text" [formControl]="control" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 bg-gray-800 leading-tight focus:outline-none focus:shadow-outline">
   </div> 
 </ng-template>
 
 <ng-template #array let-controlName="controlName" let-controlArray="control">
-    <label>{{ controlName }}</label>
+    <label class="block text-gray-200 text-md font-bold mb-2 mt-4">{{ controlName }}</label>
+    <div class="shadow pl-4 mt-4 bg-gray-700 p-4 rounded">
     <ng-container *ngFor="let item of controlArray.controls; let i = index; trackBy: trackByFn;">
-        <ng-container *ngIf="isFormGroup(item, true); else notGroup">
-          <ng-container *ngTemplateOutlet="object; context:{controlName: i, control: item}"></ng-container>
-        </ng-container>
-        <ng-template #notGroup>
-          <ng-container *ngIf="isFormArray(item); else controlItem">
-            <ng-container *ngTemplateOutlet="array; context:{controlName: i, control: item}"></ng-container>
+          <ng-container *ngIf="isFormGroup(item); else notGroup">
+            <ng-container *ngTemplateOutlet="object; context:{controlName: i, control: item}"></ng-container>
           </ng-container>
-          <ng-template #controlItem>
-            <ng-container *ngTemplateOutlet="value; context: {controlName: i, control: item}"></ng-container>
+          <ng-template #notGroup>
+            <ng-container *ngIf="isFormArray(item); else controlItem">
+              <ng-container *ngTemplateOutlet="array; context:{controlName: i, control: item}"></ng-container>
+            </ng-container>
+            <ng-template #controlItem>
+              <ng-container *ngTemplateOutlet="value; context: {controlName: i, control: item}"></ng-container>
+            </ng-template>
           </ng-template>
-        </ng-template>
     </ng-container>
+  </div>
 </ng-template>
-
-
-

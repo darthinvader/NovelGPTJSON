@@ -8,19 +8,19 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CharacterComponent implements OnInit {
   characterForm: FormGroup = this.fb.group({
-      name: ['', Validators.required],
-      role: ['', Validators.required],
-      background: ['', Validators.required],
-      personality: ['', Validators.required],
-      goals: this.fb.array([this.fb.control('')]),
-      conflicts: this.fb.array([this.fb.control('')]),
-      relationships: this.fb.array([this.createRelationship()]),
-      motivations: this.fb.array([this.fb.control('')]),
-      fears: this.fb.array([this.fb.control('')]),
-      character_arc: ['', Validators.required]
-    });
+    name: ['', Validators.required],
+    role: ['', Validators.required],
+    background: ['', Validators.required],
+    personality: ['', Validators.required],
+    goals: this.fb.array([this.fb.control('')]),
+    conflicts: this.fb.array([this.fb.control('')]),
+    relationships: this.fb.array([this.createRelationship()]),
+    motivations: this.fb.array([this.fb.control('')]),
+    fears: this.fb.array([this.fb.control('')]),
+    character_arc: ['', Validators.required]
+  });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.characterForm = this.fb.group({

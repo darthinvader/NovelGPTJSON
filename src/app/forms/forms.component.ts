@@ -14,7 +14,7 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dynamicForm = this.createGroup({
-      name: 'John',   
+      name: 'John',
       description: 'Hello',
       character: { name: 'Melf', level: 1, dong: ['1', '2'] },
       Spells: ['', ''],
@@ -41,11 +41,9 @@ export class FormsComponent implements OnInit {
     const array = this.fb.array([]);
     data.forEach(element => {
       if (Array.isArray(element)) {
-        const newArray = this.createArray(element); // create new form array
-        array.push(this.fb.control(newArray)); // add it as a form control
+        array.push(this.createArray(element) as unknown as FormControl); // directly add it
       } else if (typeof element === 'object') {
-        const newGroup = this.createGroup(element); // create new form group
-        array.push(this.fb.control(newGroup)); // add it as a form control
+        array.push(this.createGroup(element) as unknown as FormControl); // directly add it
       } else {
         array.push(this.createControl(element)); // add form control directly
       }
@@ -61,15 +59,12 @@ export class FormsComponent implements OnInit {
 
   submit(): void {
     this.dynamicForm
-    console.log(this.dynamicForm);
   }
-  isFormGroup(control: FormControl | FormArray | FormGroup, consoler: boolean = false): boolean {
-    if (consoler) console.log('Should be group:', control)
+  isFormGroup(control: FormControl | FormArray | FormGroup): boolean {
     return control instanceof FormGroup;
   }
 
   isFormArray(control: FormControl | FormArray | FormGroup): boolean {
-    // console.log('ISARRAY',control)
     return control instanceof FormArray;
   }
 
@@ -91,8 +86,6 @@ export class FormsComponent implements OnInit {
 
   }
   getObjectEntries(item: any): { key: string, value: any }[] {
-    console.log('item:', item)
-    console.log("entries:", Object.entries(item).map(([key, value]) => ({ key, value })));
     return Object.entries(item).map(([key, value]) => ({ key, value }));
   }
 
