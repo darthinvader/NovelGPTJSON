@@ -1,0 +1,7 @@
+<div class="flex flex-col space-y-2">
+  <label [for]="label" class="mb-2 font-semibold text-gray-700">{{ label }}</label>
+  <div *ngFor="let ctrl of controlArray?.controls; let i = index">
+    <input type="text" [id]="label + i" [formControl]="toFormControl(ctrl)"
+      class="border-2 border-gray-200 p-2 rounded-md" (input)="emitValues()">
+  </div>
+</div>  
