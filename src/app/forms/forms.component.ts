@@ -16,7 +16,6 @@ export class FormsComponent implements OnInit {
     this.dynamicForm = this.createGroup(this.providedJSON)
   }
 
-
   createGroup(data: any): FormGroup {
     const group = this.fb.group({});
     Object.keys(data).forEach((key) => {
@@ -69,9 +68,6 @@ export class FormsComponent implements OnInit {
     }
   }
 
-
-
-
   createControl(data: any): FormControl {
     return this.fb.control(data, Validators.required);
   }
@@ -107,8 +103,6 @@ export class FormsComponent implements OnInit {
 
     return data;
   }
-
-
 
   isFormGroup(control: FormControl | FormArray | FormGroup): boolean {
     return control instanceof FormGroup;
@@ -150,7 +144,4 @@ export class FormsComponent implements OnInit {
   trackByFn(index: any, item: any) {
     return item.key; // unique id corresponding to the item
   }
-
-
-
 }
