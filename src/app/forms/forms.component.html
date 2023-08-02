@@ -40,11 +40,30 @@
 </ng-template>
 
 <ng-template #value let-controlName="controlName" let-control="control">
-  <div class="mb-4">
-    <label class="block text-gray-200 text-sm font-bold mb-2">{{ controlName }}</label>
-<input type="text" [formControl]="control" class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800">
-  </div> 
+  <label class="block text-gray-200 text-sm font-bold mb-2 flex-0">{{ controlName }}</label>
+  <div class="mb-4 flex">
+    <div class="relative w-full">
+      <!-- If toggle state is true for this controlName, display textarea; otherwise, display input -->
+      <ng-container *ngIf="isTextarea(controlName); else inputField">
+        <textarea [formControl]="control" class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800"></textarea>
+      </ng-container>
+      <ng-template #inputField>
+        <input type="text" [formControl]="control" class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800">
+      </ng-template>
+
+      <!-- Toggle button -->
+<label class="absolute right-0 top-0 mt-2 mr-2 text-gray-300 hover:text-white focus:outline-none cursor-pointer">
+  <input type="checkbox" (change)="toggleInputType(controlName)" class="hidden">
+  <span class="block w-16 h-6 bg-gray-600 rounded-full transition-colors duration-300 ease-in-out relative" [class.bg-gray-400]="isTextarea(controlName)">
+    <span class="block absolute w-4 h-4 bg-white rounded-full translate-x-1 transition-transform duration-300 ease-in-out transform translate-y-1" [class.translate-x-11]="isTextarea(controlName)"></span>
+  </span>
+</label>
+
+    </div>
+  </div>
 </ng-template>
+
+
 
 <ng-template #array let-controlName="controlName" let-controlArray="control">
     <div class="flex flex-col">

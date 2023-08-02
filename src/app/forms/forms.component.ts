@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-forms',
@@ -9,11 +10,24 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractCon
 export class FormsComponent implements OnInit {
   @Input() providedJSON?: JSON
   dynamicForm: FormGroup;
-
+  faCoffee = faCoffee
   constructor(private fb: FormBuilder) { this.dynamicForm = this.fb.group({}); }
 
   ngOnInit(): void {
     this.dynamicForm = this.createGroup(this.providedJSON)
+  }
+
+  // Define a property to keep track of toggled fields
+  toggledFields: { [key: string]: boolean } = {};
+
+  // Define a function to toggle the input type
+  toggleInputType(controlName: string): void {
+    this.toggledFields[controlName] = !this.toggledFields[controlName];
+  }
+
+  // Define a function to determine whether the textarea should be shown
+  isTextarea(controlName: string): boolean {
+    return this.toggledFields[controlName];
   }
 
   createGroup(data: any): FormGroup {
