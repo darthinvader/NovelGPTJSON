@@ -77,8 +77,39 @@ export class FormsComponent implements OnInit {
   }
 
   submit(): void {
-    this.dynamicForm
+    const formValues = this.removeEmptyFields(this.dynamicForm.value);
+    const jsonData = JSON.stringify(formValues, null, 2); // Prettify JSON string
+    const blob = new Blob([jsonData], { type: 'text/json;charset=utf-8' });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = 'data.json'; // You can name the file whatever you want
+    link.click();
+    URL.revokeObjectURL(href);
   }
+
+  removeEmptyFields(data: any): any {
+    if (typeof data !== 'object') return data;
+
+    // First, iterate through child properties
+    for (const key in data) {
+      if (typeof data[key] === 'object') {
+        data[key] = this.removeEmptyFields(data[key]);
+      }
+    }
+
+    // Next, check if any properties should be deleted
+    for (const key in data) {
+      if (data[key] === null || data[key] === '' || (Array.isArray(data[key]) && data[key].length === 0) || (typeof data[key] === 'object' && Object.keys(data[key]).length === 0)) {
+        delete data[key];
+      }
+    }
+
+    return data;
+  }
+
+
+
   isFormGroup(control: FormControl | FormArray | FormGroup): boolean {
     return control instanceof FormGroup;
   }
@@ -119,5 +150,7 @@ export class FormsComponent implements OnInit {
   trackByFn(index: any, item: any) {
     return item.key; // unique id corresponding to the item
   }
+
+
 
 }
