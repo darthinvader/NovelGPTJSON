@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -7,19 +7,129 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractCon
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-
+  @Input() providedJSON: JSON
   dynamicForm: FormGroup;
 
   constructor(private fb: FormBuilder) { this.dynamicForm = this.fb.group({}); }
 
   ngOnInit(): void {
     this.dynamicForm = this.createGroup({
-      name: 'John',
-      description: 'Hello',
-      character: { name: 'Melf', level: 1, dong: ['1', '2'] },
-      Spells: ['', ''],
-      Weirdness: [{ name: 'HOEEE', lvl: 3 }, { name: 'HOII', lvl: 3 }]
-    });
+      "Book Title": "",
+      "Author": "",
+      "Mood": "",
+      "Themes": [""],
+      "Narrative Devices": [""],
+      "Imagery": [""],
+      "Setting": {
+        "Time": "",
+        "Place": {
+          "Name": "",
+          "Description": "",
+          "Brief_history": ""
+        }
+      },
+      "Plot": {
+        "Plot Structure": "",
+        "Conflict Details": {
+          "Origin": "",
+          "Escalation": "",
+          "Resolution": ""
+        },
+        "Subplots": [
+          {
+            "Description": "",
+            "Resolution": ""
+          }
+        ],
+        "Major Events": [
+          {
+            "Description": "",
+            "Impact": ""
+          }
+        ],
+        "Beginning scenes": [
+          {
+            "Description": "",
+            "Cause": "",
+            "Effect": ""
+          }
+        ],
+        "Middle_scenes": [
+          {
+            "Description": "",
+            "Cause": "",
+            "Effect": ""
+          }
+        ],
+        "End Scenes": [
+          {
+            "Description": "",
+            "Cause": "",
+            "Effect": ""
+          }
+        ],
+        "Plot Twists": [
+          {
+            "Description": "",
+            "Impact": ""
+          }
+        ]
+      },
+      "Settings Details": {
+        "Notable Places": [
+          {
+            "Name": "",
+            "Description": ""
+          }
+        ],
+        "Significant Structures": [
+          {
+            "Name": "",
+            "Description": ""
+          }
+        ],
+        "Species": [
+          {
+            "Species Name": "",
+            "Description": "",
+            "Realtionship With Other Races": ""
+          }
+        ],
+        "Languages": [
+          {
+            "Name": "",
+            "Description": ""
+          }
+        ],
+        "Key items": [
+          {
+            "Item Name": "",
+            "Description": "",
+            "Significance": ""
+          }
+        ]
+      },
+      "characters": [
+        {
+          "Name": "",
+          "Role": "",
+          "Background": "",
+          "Personality": "",
+          "Goal": "",
+          "Conflicts": "",
+          "Relationships": [{ "Name": "", "Description": "" }],
+          "Motivations": "",
+          "Fears": "",
+          "Character Arc": ""
+        }
+      ],
+      "inspirations": {
+        "literature_inspirations": [""],
+        "real_world_inspirations": [""]
+      }
+    }
+
+    );
   }
 
 
