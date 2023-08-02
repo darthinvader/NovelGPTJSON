@@ -7,129 +7,13 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractCon
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-  // @Input() providedJSON: JSON
+  @Input() providedJSON?: JSON
   dynamicForm: FormGroup;
 
   constructor(private fb: FormBuilder) { this.dynamicForm = this.fb.group({}); }
 
   ngOnInit(): void {
-    this.dynamicForm = this.createGroup({
-      "Book Title": "",
-      "Author": "",
-      "Mood": "",
-      "Themes": [""],
-      "Narrative Devices": [""],
-      "Imagery": [""],
-      "Setting": {
-        "Time": "",
-        "Place": {
-          "Name": "",
-          "Description": "",
-          "Brief_history": ""
-        }
-      },
-      "Plot": {
-        "Plot Structure": "",
-        "Conflict Details": {
-          "Origin": "",
-          "Escalation": "",
-          "Resolution": ""
-        },
-        "Subplots": [
-          {
-            "Description": "",
-            "Resolution": ""
-          }
-        ],
-        "Major Events": [
-          {
-            "Description": "",
-            "Impact": ""
-          }
-        ],
-        "Beginning scenes": [
-          {
-            "Description": "",
-            "Cause": "",
-            "Effect": ""
-          }
-        ],
-        "Middle_scenes": [
-          {
-            "Description": "",
-            "Cause": "",
-            "Effect": ""
-          }
-        ],
-        "End Scenes": [
-          {
-            "Description": "",
-            "Cause": "",
-            "Effect": ""
-          }
-        ],
-        "Plot Twists": [
-          {
-            "Description": "",
-            "Impact": ""
-          }
-        ]
-      },
-      "Settings Details": {
-        "Notable Places": [
-          {
-            "Name": "",
-            "Description": ""
-          }
-        ],
-        "Significant Structures": [
-          {
-            "Name": "",
-            "Description": ""
-          }
-        ],
-        "Species": [
-          {
-            "Species Name": "",
-            "Description": "",
-            "Realtionship With Other Races": ""
-          }
-        ],
-        "Languages": [
-          {
-            "Name": "",
-            "Description": ""
-          }
-        ],
-        "Key items": [
-          {
-            "Item Name": "",
-            "Description": "",
-            "Significance": ""
-          }
-        ]
-      },
-      "characters": [
-        {
-          "Name": "",
-          "Role": "",
-          "Background": "",
-          "Personality": "",
-          "Goal": "",
-          "Conflicts": "",
-          "Relationships": [{ "Name": "", "Description": "" }],
-          "Motivations": "",
-          "Fears": "",
-          "Character Arc": ""
-        }
-      ],
-      "inspirations": {
-        "literature_inspirations": [""],
-        "real_world_inspirations": [""]
-      }
-    }
-
-    );
+    this.dynamicForm = this.createGroup(this.providedJSON)
   }
 
 
