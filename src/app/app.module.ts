@@ -27,10 +27,13 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes) // Moved to imports array
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule],
+
 })
 export class AppModule { }
