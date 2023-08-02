@@ -1,5 +1,5 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="p-6 bg-gray-900 text-gray-200 border border-gray-700 rounded-md space-y-6">
-  <app-card>
+<form [formGroup]="dynamicForm" (ngSubmit)="submit()" >
+  <div class="p-6 bg-gray-900 text-gray-200 border border-gray-700 rounded-md space-y-6 flex flex-col"><app-card>
     <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
         <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
           <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
@@ -14,11 +14,13 @@
         </ng-template>
     </ng-container>
   </app-card>
+  </div>
 <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">Submit</button>
 </form>
 
 <ng-template #object let-controlName="controlName" let-control="control">
-    <label class="block text-gray-200 text-md font-bold mb-2">{{ controlName }}</label>
+  <div class="flex flex-col">   
+  <label class="block text-gray-200 text-md font-bold mb-2">{{ controlName }}</label>
     <app-card>
       <ng-container *ngFor="let innerControl of getObjectEntries(control.controls) trackBy: trackByFn">
           <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
@@ -34,6 +36,7 @@
           </ng-template>
       </ng-container>
     </app-card>
+    </div>
 </ng-template>
 
 <ng-template #value let-controlName="controlName" let-control="control">
@@ -44,6 +47,7 @@
 </ng-template>
 
 <ng-template #array let-controlName="controlName" let-controlArray="control">
+    <div class="flex flex-col">
     <label class="block text-gray-200 text-md font-bold mb-2 mt-4">{{ controlName }}</label>
     <app-card >
       <ng-container *ngFor="let item of controlArray.controls; let i = index; trackBy: trackByFn;">
@@ -59,7 +63,9 @@
           </ng-template>
         </ng-template>
       </ng-container>
-<button (click)="addToArray(controlArray)" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">Add Element</button>
-  </app-card>
+      <button type="button" (click)="addToArray(controlArray)" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">Add Element</button>
+    </app-card>
+  </div>
+
 </ng-template>
   
