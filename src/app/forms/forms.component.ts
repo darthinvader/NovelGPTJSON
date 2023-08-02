@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractCon
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-  @Input() providedJSON: JSON
+  // @Input() providedJSON: JSON
   dynamicForm: FormGroup;
 
   constructor(private fb: FormBuilder) { this.dynamicForm = this.fb.group({}); }
