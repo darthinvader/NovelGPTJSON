@@ -1,0 +1,87 @@
+{
+  "Book Title": "",
+  "Chapter": {
+    "Title": "",
+    "Number": "",
+    "Outcome": "",
+    "Time Frame": "",
+    "Pace": "",
+    "Mood": ""
+  },
+  "Point Of View": "",
+  "Story Arc Stage": "",
+  "Target Audience Reaction": "",
+  "Characters Involved": [""],
+  "Information Revealed": {
+    "Plot Information": [""],
+    "Character Information": [""]
+  },
+  "Backstory": [""],
+  "Setting": {
+    "Time": {
+      "Exact Time": "",
+      "Period": "",
+      "Duration": ""
+    },
+    "Location": {
+      "Place Name": "",
+      "Description": "",
+      "Symbolic Value": "",
+      "Brief History": ""
+    },
+    "Environment": {
+      "Weather": "",
+      "Social Context": "",
+      "Cultural References": ""
+    }
+  },
+  "Plot": {
+    "Premise": "",
+    "Structure": "",
+    "Outline": "",
+    "Key Plot Points": [""],
+    "Conflict": {
+      "Origin": "",
+      "Escalation": "",
+      "Resolution": "",
+      "Significance": ""
+    },
+    "Subplots": [
+      {
+        "Description": "",
+        "Resolution": "",
+        "Significance": ""
+      }
+    ],
+    "Major Events": [
+      {
+        "Description": "",
+        "Impact": "",
+        "Importance": ""
+      }
+    ],
+    "Scenes": [
+      {
+        "Description": "",
+        "Cause": "",
+        "Effect": ""
+      }
+    ]
+  },
+  "Themes": [
+    {
+      "Theme": "",
+      "Relevance": "",
+      "How It Develops": ""
+    }
+  ],
+  "Inspirations": {
+    "Literature Inspirations": [""],
+    "Real World Inspirations": [""]
+  },
+  "Research": {
+    "Topics": [""],
+    "Sources": [""],
+    "Applications": [""]
+  }
+}

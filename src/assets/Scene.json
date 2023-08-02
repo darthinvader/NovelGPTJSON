@@ -1,0 +1,119 @@
+{
+  "Book Title": "",
+  "Chapter": {
+    "Title": "",
+    "Number": ""
+  },
+  "Scene": {
+    "Title": "",
+    "Number": "",
+    "Premise": "",
+    "Structure": "",
+    "Outline": "",
+    "Key Plot Points": [""],
+    "Major Events": [
+      {
+        "Description": "",
+        "Impact": "",
+        "Importance": ""
+      }
+    ],
+    "Subplots": [
+      {
+        "Description": "",
+        "Connection To Main Plot": "",
+        "Resolution": ""
+      }
+    ],
+    "Plot Twists": [
+      {
+        "Description": "",
+        "Impact": ""
+      }
+    ],
+    "Foreshadowing Elements": [
+      {
+        "Element": "",
+        "Significance": ""
+      }
+    ],
+    "Conflict": {
+      "Origin": "",
+      "Escalation": "",
+      "Climax": "",
+      "Resolution": "",
+      "Significance": ""
+    }
+  },
+  "Genre": "",
+  "Mood": "",
+  "Writing Style": "",
+  "Point Of View": "",
+  "Narrative Voice": "",
+  "Tension Level": "",
+  "Pace": "",
+  "Reading Difficulty Level": "",
+  "Worldbuilding Elements": [""],
+  "Themes": [
+    {
+      "Theme": "",
+      "Relevance": "",
+      "How It Develops": ""
+    }
+  ],
+  "Symbols": [
+    {
+      "Symbol": "",
+      "Interpretation": "",
+      "Role": ""
+    }
+  ],
+  "Setting": {
+    "Location": "",
+    "Time": ""
+  },
+  "Characters Involved": [
+    {
+      "Character Name": "",
+      "Role": "",
+      "Actions": ""
+    }
+  ],
+  "Dialogue": {
+    "Key Conversations": [
+      {
+        "Characters": [""],
+        "Summary": "",
+        "Intention": "",
+        "Outcome": "",
+        "Importance": ""
+      }
+    ],
+    "Significant Quotes": [""]
+  },
+  "Sensory Details": {
+    "Visual": "",
+    "Auditory": "",
+    "Tactile": "",
+    "Smell": "",
+    "Taste": ""
+  },
+  "Literary Devices": [
+    {
+      "Device": "",
+      "Purpose": "",
+      "Effect": ""
+    }
+  ],
+  "Target Audience Reaction": "",
+  "Reader Emotions": "",
+  "Authorial Intent": "",
+  "Inspirations": {
+    "Literature": [""],
+    "Real World": [""]
+  },
+  "Research": {
+    "Topics": [""],
+    "Sources": [""]
+  }
+}

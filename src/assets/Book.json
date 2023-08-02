@@ -1,0 +1,49 @@
+{
+  "Book Title": "",
+  "Author": "",
+  "Series": {
+    "Name": "",
+    "Volume": ""
+  },
+  "Genre": [""],
+  "Audience": {
+    "Age Group": "",
+    "Target Demographic": ""
+  },
+  "Plot": {
+    "Premise": "",
+    "Structure": "",
+    "Outline": "",
+    "Key Plot Points": [""],
+    "Conflict": {
+      "Origin": "",
+      "Escalation": "",
+      "Climax": "",
+      "Resolution": ""
+    },
+    "Subplots": [
+      {
+        "Description": "",
+        "Connection To Main Plot": "",
+        "Resolution": ""
+      }
+    ]
+  },
+  "Settings": [
+    {
+      "Location": "",
+      "Time Period": "",
+      "Cultural Context": "",
+      "Description": ""
+    }
+  ],
+  "Characters": [""],
+  "Inspirations": {
+    "Literary": [""],
+    "Real World": [""]
+  },
+  "Research": {
+    "Topics": [""],
+    "Sources": [""]
+  }
+}

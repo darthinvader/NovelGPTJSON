@@ -1,0 +1,85 @@
+{
+  "Name": "",
+  "Role in Story": "",
+  "Demographics": {
+    "Age": "",
+    "Gender": "",
+    "Occupation": "",
+    "Education": "",
+    "Social Status": ""
+  },
+  "Physical Description": {
+    "Appearance": "",
+    "Height": "",
+    "Weight": "",
+    "Eye Color": "",
+    "Hair Color": "",
+    "Notable Features": [""]
+  },
+  "Background": {
+    "History": "",
+    "Culture": "",
+    "Family": ""
+  },
+  "Voice and Speech": {
+    "Style": "",
+    "Tone": "",
+    "Accent": "",
+    "Impediments": "",
+    "Catchphrases": [""]
+  },
+  "Personality": {
+    "Traits": [""],
+    "Flaws": [""],
+    "Fears": [""],
+    "Values": [""],
+    "Beliefs": [""],
+    "Habits": [""],
+    "Quirks": [""]
+  },
+  "Mental and Emotional State": {
+    "Current Mental State": "",
+    "Current Emotional State": "",
+    "Motivations": {
+      "Primary": "",
+      "Secondary": [""]
+    }
+  },
+  "Abilities and Weaknesses": {
+    "Skills and Abilities": [""],
+    "Weaknesses": [""]
+  },
+  "Health": {
+    "Physical Condition": "",
+    "Mental Condition": ""
+  },
+  "Character Arc": {
+    "Start": "",
+    "Progression": "",
+    "Resolution": "",
+    "Development": ""
+  },
+  "Conflicts": {
+    "Internal": [""],
+    "External": [""]
+  },
+  "Relationships": [
+    {
+      "Character": "",
+      "Nature": "",
+      "Effect": "",
+      "Type": "",
+      "Impact": ""
+    }
+  ],
+  "Current Location": "",
+  "Possessions": {
+    "Equipment": [""],
+    "Personal Items": [""]
+  },
+  "Goals": {
+    "Objectives": [""],
+    "Obstacles": [""]
+  },
+  "Significant Moments": [""]
+}
