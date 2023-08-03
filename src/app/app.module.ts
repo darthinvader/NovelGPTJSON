@@ -10,6 +10,8 @@ import * as chapter from '../assets/Chapter.json';
 import * as character from '../assets/Character.json';
 import * as scene from '../assets/Scene.json';
 import { WrapperComponent } from './wrapper/wrapper.component';
+import { ScrollButtonsComponent } from './scroll-buttons/scroll-buttons.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
   { path: 'book', component: WrapperComponent, data: { input: book, title: 'Book' } },
@@ -23,13 +25,15 @@ const routes: Routes = [
     AppComponent,
     CardComponent,
     FormsComponent,
-    WrapperComponent
+    WrapperComponent,
+    ScrollButtonsComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes) // Moved to imports array
+    RouterModule.forRoot(routes),
+    FontAwesomeModule // Moved to imports array
   ],
   providers: [],
   bootstrap: [AppComponent],
