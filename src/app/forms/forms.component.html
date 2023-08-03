@@ -1,32 +1,22 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="mx-4 my-2">
-  <h1 class="text-gray-200 text-3xl font-bold mb-2">{{title}}</h1>
-  <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
-    <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
-      <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
-    </ng-container>
-    <ng-template #notGroup>
-      <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
-        <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
-      </ng-container>
-      <ng-template #singleControl>
-        <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
-      </ng-template>
-    </ng-template>
-  </ng-container>
-  <button type="button" (click)="submit()"
-    class="text-lg mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded transform transition duration-500 ease-in-out hover:scale-105">
-    Submit
-  </button>
-  <label class="block text-gray-200 text-md font-bold mb-2 mt-4">Upload JSON file</label>
-  <!-- Add this part to your template -->
-  <div class="mt-2">
-    <label for="jsonUpload" class="cursor-pointer text-blue-500 hover:text-blue-700 underline">
-      Upload JSON
-    </label>
-    <input type="file" id="jsonUpload" style="display: none" (change)="handleFileInput($event)">
-  </div>
-</form>
+<h1 class="mx-2 my-2 text-gray-200 text-3xl font-bold pb-50">{{title}}</h1>
+<div class="pb-24">
 
+  <form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="mx-4 my-2">
+    <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
+      <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
+        <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+      </ng-container>
+      <ng-template #notGroup>
+        <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
+          <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+        </ng-container>
+        <ng-template #singleControl>
+          <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
+        </ng-template>
+      </ng-template>
+    </ng-container>
+  </form>
+</div>
 
 
 
@@ -111,3 +101,17 @@
   </app-card>
 
 </ng-template>
+
+<div class="flex gap-4 fixed bottom-0 left-0 bg-gray-900 w-full p-4 z-5">
+  <button type="button" (click)="submit()"
+    class="text-lg bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded transform transition duration-500 ease-in-out hover:scale-105">
+    Submit
+  </button>
+  <div class="flex flex-col justify-center ">
+    <label class="block text-gray-200 text-md font-bold ">Upload JSON file</label>
+    <label for="jsonUpload" class="cursor-pointer text-blue-500 hover:text-blue-700 underline">
+      Upload JSON
+    </label>
+    <input type="file" id="jsonUpload" class="hidden" (change)="handleFileInput($event)">
+  </div>
+</div>
