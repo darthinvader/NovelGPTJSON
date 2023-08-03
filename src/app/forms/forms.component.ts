@@ -103,6 +103,57 @@ export class FormsComponent implements OnInit {
     URL.revokeObjectURL(href); // Clean up
   }
 
+
+  // In your component class, add a method to handle the file input
+  handleFileInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    const file = files.item(0);
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => {
+      const content = event.target.result;
+      const parsedJson = JSON.parse(content);
+
+      // Now, update the form using this parsed JSON
+      this.updateForm(this.dynamicForm, parsedJson);
+    };
+
+    if (file) {
+      reader.readAsText(file);
+    }
+  }
+
+  // Add a recursive method to update the form
+  updateForm(control: AbstractControl, data: any): void {
+    if (control instanceof FormGroup) {
+      for (const controlName in control.controls) {
+        if (control.controls.hasOwnProperty(controlName) && data.hasOwnProperty(controlName)) {
+          this.updateForm(control.controls[controlName], data[controlName]);
+        }
+      }
+    } else if (control instanceof FormArray) {
+      // First, clear the existing FormArray
+      while (control.length) {
+        control.removeAt(0);
+      }
+      // Now, iterate through the provided data array
+      data.forEach((element: any, index: number) => {
+        if (Array.isArray(element)) {
+          control.push(this.createArray(element) as unknown as FormControl);
+        } else if (typeof element === 'object') {
+          control.push(this.createGroup(element) as unknown as FormControl);
+        } else {
+          control.push(this.createControl(element));
+        }
+        // Update the newly created control with the corresponding data
+        this.updateForm(control.at(index), element);
+      });
+    } else if (control instanceof FormControl && data !== null && data !== undefined) {
+      control.setValue(data);
+    }
+  }
+
   removeEmptyFields(data: any): any {
     if (typeof data !== 'object') return data;
 

@@ -17,6 +17,14 @@
     class="text-lg mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded transform transition duration-500 ease-in-out hover:scale-105">
     Submit
   </button>
+  <label class="block text-gray-200 text-md font-bold mb-2 mt-4">Upload JSON file</label>
+  <!-- Add this part to your template -->
+  <div class="mt-2">
+    <label for="jsonUpload" class="cursor-pointer text-blue-500 hover:text-blue-700 underline">
+      Upload JSON
+    </label>
+    <input type="file" id="jsonUpload" style="display: none" (change)="handleFileInput($event)">
+  </div>
 </form>
 
 
