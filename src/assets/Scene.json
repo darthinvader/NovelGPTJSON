@@ -1,50 +1,8 @@
 {
   "Book Title": "",
-  "Chapter": {
-    "Title": "",
-    "Number": ""
-  },
-  "Scene": {
-    "Title": "",
-    "Number": "",
-    "Premise": "",
-    "Structure": "",
-    "Outline": "",
-    "Key Plot Points": [""],
-    "Major Events": [
-      {
-        "Description": "",
-        "Impact": "",
-        "Importance": ""
-      }
-    ],
-    "Subplots": [
-      {
-        "Description": "",
-        "Connection To Main Plot": "",
-        "Resolution": ""
-      }
-    ],
-    "Plot Twists": [
-      {
-        "Description": "",
-        "Impact": ""
-      }
-    ],
-    "Foreshadowing Elements": [
-      {
-        "Element": "",
-        "Significance": ""
-      }
-    ],
-    "Conflict": {
-      "Origin": "",
-      "Escalation": "",
-      "Climax": "",
-      "Resolution": "",
-      "Significance": ""
-    }
-  },
+  "Target Audience Reaction": "",
+  "Reader Emotions": "",
+  "Authorial Intent": "",
   "Genre": "",
   "Mood": "",
   "Writing Style": "",
@@ -54,7 +12,18 @@
   "Pace": "",
   "Reading Difficulty Level": "",
   "Worldbuilding Elements": [""],
-  "Themes": [
+  "Chapter": {
+    "Title": "",
+    "Number": ""
+  },
+  "Inspirations": {
+    "Literature": [""],
+    "Real World": [""]
+  },
+  "Research": {
+    "Topics": [""],
+    "Sources": [""]
+  },"Themes": [
     {
       "Theme": "",
       "Relevance": "",
@@ -105,15 +74,45 @@
       "Effect": ""
     }
   ],
-  "Target Audience Reaction": "",
-  "Reader Emotions": "",
-  "Authorial Intent": "",
-  "Inspirations": {
-    "Literature": [""],
-    "Real World": [""]
-  },
-  "Research": {
-    "Topics": [""],
-    "Sources": [""]
+  "Scene": {
+    "Title": "",
+    "Number": "",
+    "Premise": "",
+    "Structure": "",
+    "Outline": "",
+    "Key Plot Points": [""],
+    "Major Events": [
+      {
+        "Description": "",
+        "Impact": "",
+        "Importance": ""
+      }
+    ],
+    "Subplots": [
+      {
+        "Description": "",
+        "Connection To Main Plot": "",
+        "Resolution": ""
+      }
+    ],
+    "Plot Twists": [
+      {
+        "Description": "",
+        "Impact": ""
+      }
+    ],
+    "Foreshadowing Elements": [
+      {
+        "Element": "",
+        "Significance": ""
+      }
+    ],
+    "Conflict": {
+      "Origin": "",
+      "Escalation": "",
+      "Climax": "",
+      "Resolution": "",
+      "Significance": ""
+    }
   }
 }

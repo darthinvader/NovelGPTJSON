@@ -1,15 +1,32 @@
 {
   "Book Title": "",
   "Author": "",
-  "Series": {
-    "Name": "",
-    "Volume": ""
-  },
   "Genre": [""],
+  "Characters": [""],
   "Audience": {
     "Age Group": "",
     "Target Demographic": ""
   },
+  "Series": {
+    "Name": "",
+    "Volume": ""
+  },
+  "Inspirations": {
+    "Literary": [""],
+    "Real World": [""]
+  },
+  "Research": {
+    "Topics": [""],
+    "Sources": [""]
+  },
+  "Settings": [
+    {
+      "Location": "",
+      "Time Period": "",
+      "Cultural Context": "",
+      "Description": ""
+    }
+  ],
   "Plot": {
     "Premise": "",
     "Structure": "",
@@ -28,22 +45,5 @@
         "Resolution": ""
       }
     ]
-  },
-  "Settings": [
-    {
-      "Location": "",
-      "Time Period": "",
-      "Cultural Context": "",
-      "Description": ""
-    }
-  ],
-  "Characters": [""],
-  "Inspirations": {
-    "Literary": [""],
-    "Real World": [""]
-  },
-  "Research": {
-    "Topics": [""],
-    "Sources": [""]
   }
 }

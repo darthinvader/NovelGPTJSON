@@ -1,5 +1,23 @@
 {
   "Book Title": "",
+  "Point Of View": "",
+  "Story Arc Stage": "",
+  "Target Audience Reaction": "",
+  "Characters Involved": [""],
+  "Backstory": [""],
+  "Inspirations": {
+    "Literature Inspirations": [""],
+    "Real World Inspirations": [""]
+  },
+    "Information Revealed": {
+    "Plot Information": [""],
+    "Character Information": [""]
+  },
+  "Research": {
+    "Topics": [""],
+    "Sources": [""],
+    "Applications": [""]
+  },
   "Chapter": {
     "Title": "",
     "Number": "",
@@ -8,15 +26,13 @@
     "Pace": "",
     "Mood": ""
   },
-  "Point Of View": "",
-  "Story Arc Stage": "",
-  "Target Audience Reaction": "",
-  "Characters Involved": [""],
-  "Information Revealed": {
-    "Plot Information": [""],
-    "Character Information": [""]
-  },
-  "Backstory": [""],
+  "Themes": [
+    {
+      "Theme": "",
+      "Relevance": "",
+      "How It Develops": ""
+    }
+  ],
   "Setting": {
     "Time": {
       "Exact Time": "",
@@ -67,21 +83,5 @@
         "Effect": ""
       }
     ]
-  },
-  "Themes": [
-    {
-      "Theme": "",
-      "Relevance": "",
-      "How It Develops": ""
-    }
-  ],
-  "Inspirations": {
-    "Literature Inspirations": [""],
-    "Real World Inspirations": [""]
-  },
-  "Research": {
-    "Topics": [""],
-    "Sources": [""],
-    "Applications": [""]
   }
 }

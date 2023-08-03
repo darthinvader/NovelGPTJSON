@@ -1,50 +1,8 @@
 {
   "Name": "",
   "Role in Story": "",
-  "Demographics": {
-    "Age": "",
-    "Gender": "",
-    "Occupation": "",
-    "Education": "",
-    "Social Status": ""
-  },
-  "Physical Description": {
-    "Appearance": "",
-    "Height": "",
-    "Weight": "",
-    "Eye Color": "",
-    "Hair Color": "",
-    "Notable Features": [""]
-  },
-  "Background": {
-    "History": "",
-    "Culture": "",
-    "Family": ""
-  },
-  "Voice and Speech": {
-    "Style": "",
-    "Tone": "",
-    "Accent": "",
-    "Impediments": "",
-    "Catchphrases": [""]
-  },
-  "Personality": {
-    "Traits": [""],
-    "Flaws": [""],
-    "Fears": [""],
-    "Values": [""],
-    "Beliefs": [""],
-    "Habits": [""],
-    "Quirks": [""]
-  },
-  "Mental and Emotional State": {
-    "Current Mental State": "",
-    "Current Emotional State": "",
-    "Motivations": {
-      "Primary": "",
-      "Secondary": [""]
-    }
-  },
+  "Current Location": "",
+  "Significant Moments": [""],
   "Abilities and Weaknesses": {
     "Skills and Abilities": [""],
     "Weaknesses": [""]
@@ -72,7 +30,41 @@
       "Impact": ""
     }
   ],
-  "Current Location": "",
+  "Mental and Emotional State": {
+    "Current Mental State": "",
+    "Current Emotional State": "",
+    "Motivations": {
+      "Primary": "",
+      "Secondary": [""]
+    }
+  },
+  "Demographics": {
+    "Age": "",
+    "Gender": "",
+    "Occupation": "",
+    "Education": "",
+    "Social Status": ""
+  },
+  "Physical Description": {
+    "Appearance": "",
+    "Height": "",
+    "Weight": "",
+    "Eye Color": "",
+    "Hair Color": "",
+    "Notable Features": [""]
+  },
+  "Background": {
+    "History": "",
+    "Culture": "",
+    "Family": ""
+  },
+  "Voice and Speech": {
+    "Style": "",
+    "Tone": "",
+    "Accent": "",
+    "Impediments": "",
+    "Catchphrases": [""]
+  },
   "Possessions": {
     "Equipment": [""],
     "Personal Items": [""]
@@ -81,5 +73,13 @@
     "Objectives": [""],
     "Obstacles": [""]
   },
-  "Significant Moments": [""]
+  "Personality": {
+    "Traits": [""],
+    "Flaws": [""],
+    "Fears": [""],
+    "Values": [""],
+    "Beliefs": [""],
+    "Habits": [""],
+    "Quirks": [""]
+  }
 }

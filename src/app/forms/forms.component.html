@@ -1,29 +1,22 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="m-1">
+<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="mx-4 my-2">
   <h1 class="text-gray-200 text-3xl font-bold mb-2">{{title}}</h1>
-  <app-card>
-    <div class="flex flex-col">
-      <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
-        <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
-          <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
-        </ng-container>
-        <ng-template #notGroup>
-          <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
-            <ng-container
-              *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
-          </ng-container>
-          <ng-template #singleControl>
-            <ng-container
-              *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
-          </ng-template>
-        </ng-template>
+  <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
+      <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
+        <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
       </ng-container>
-    </div>
-  </app-card>
-  <button type="submit" (click)="submit()"
-    class="mt-4 mb-4 ml-4 mr-4 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded transform transition duration-500 ease-in-out hover:scale-105">
-    Submit
-  </button>
+      <ng-template #notGroup>
+        <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
+          <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+        </ng-container>
+        <ng-template #singleControl>
+          <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
+        </ng-template>
+      </ng-template>
+  </ng-container>
 </form>
+
+
+
 
 <ng-template #object let-controlName="controlName" let-control="control">
   <label class="block text-gray-200 text-md font-bold mb-2 ">{{ controlName }}</label>
