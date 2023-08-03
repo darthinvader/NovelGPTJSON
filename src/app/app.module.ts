@@ -12,10 +12,10 @@ import * as scene from '../assets/Scene.json';
 import { WrapperComponent } from './wrapper/wrapper.component';
 
 const routes: Routes = [
-  { path: 'book', component: WrapperComponent, data: { input: book } },
-  { path: 'chapter', component: WrapperComponent, data: { input: chapter } },
-  { path: 'character', component: WrapperComponent, data: { input: character } },
-  { path: 'scene', component: WrapperComponent, data: { input: scene } },
+  { path: 'book', component: WrapperComponent, data: { input: { book }, title: 'Book' } },
+  { path: 'chapter', component: WrapperComponent, data: { input: chapter, title: 'Chapter' } },
+  { path: 'character', component: WrapperComponent, data: { input: character, title: 'Character' } },
+  { path: 'scene', component: WrapperComponent, data: { input: scene, title: 'Scene' } },
 ];
 
 @NgModule({

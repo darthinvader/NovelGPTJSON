@@ -9,6 +9,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class FormsComponent implements OnInit {
   @Input() providedJSON?: JSON
+  @Input() title?: string
   dynamicForm: FormGroup;
   faCoffee = faCoffee
   constructor(private fb: FormBuilder) { this.dynamicForm = this.fb.group({}); }

@@ -1,42 +1,52 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="submit()" >
-  <div class="p-6 bg-gray-900 text-gray-200 border border-gray-700 rounded-md space-y-6 flex flex-col"><app-card>
-    <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
+<form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="m-1">
+  <h1 class="text-gray-200 text-3xl font-bold mb-2">{{title}}</h1>
+  <app-card>
+    <div class="flex flex-col">
+      <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
         <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
           <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
         </ng-container>
         <ng-template #notGroup>
           <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
-            <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
           </ng-container>
           <ng-template #singleControl>
-            <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
           </ng-template>
         </ng-template>
-    </ng-container>
+      </ng-container>
+    </div>
   </app-card>
-  </div>
-<button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">Submit</button>
+  <button type="submit" (click)="submit()"
+    class="mt-4 mb-4 ml-4 mr-4 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded transform transition duration-500 ease-in-out hover:scale-105">
+    Submit
+  </button>
 </form>
 
 <ng-template #object let-controlName="controlName" let-control="control">
-  <div class="flex flex-col">   
-  <label class="block text-gray-200 text-md font-bold mb-2">{{ controlName }}</label>
-    <app-card>
+  <label class="block text-gray-200 text-md font-bold mb-2 ">{{ controlName }}</label>
+  <app-card>
+    <div class=" flex flex-col">
       <ng-container *ngFor="let innerControl of getObjectEntries(control.controls) trackBy: trackByFn">
-          <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
-            <ng-container *ngTemplateOutlet="object; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
+        <ng-container *ngIf="isFormGroup(innerControl.value); else notGroup">
+          <ng-container
+            *ngTemplateOutlet="object; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
+        </ng-container>
+        <ng-template #notGroup>
+          <ng-container *ngIf="isFormArray(innerControl.value); else singleControl">
+            <ng-container
+              *ngTemplateOutlet="array; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
           </ng-container>
-          <ng-template #notGroup>
-            <ng-container *ngIf="isFormArray(innerControl.value); else singleControl">
-              <ng-container *ngTemplateOutlet="array; context:{controlName: innerControl.key, control: innerControl.value}"></ng-container>
-            </ng-container>
-            <ng-template #singleControl>
-              <ng-container *ngTemplateOutlet="value; context: {controlName: innerControl.key, control: innerControl.value}"></ng-container>
-            </ng-template>
+          <ng-template #singleControl>
+            <ng-container
+              *ngTemplateOutlet="value; context: {controlName: innerControl.key, control: innerControl.value}"></ng-container>
           </ng-template>
+        </ng-template>
       </ng-container>
-    </app-card>
     </div>
+  </app-card>
 </ng-template>
 
 <ng-template #value let-controlName="controlName" let-control="control">
@@ -45,19 +55,24 @@
     <div class="relative w-full">
       <!-- If toggle state is true for this controlName, display textarea; otherwise, display input -->
       <ng-container *ngIf="isTextarea(controlName); else inputField">
-        <textarea [formControl]="control" class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800"></textarea>
+        <textarea [formControl]="control"
+          class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800"></textarea>
       </ng-container>
       <ng-template #inputField>
-        <input type="text" [formControl]="control" class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800">
+        <input type="text" [formControl]="control"
+          class="appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200 ease-in-out focus:bg-gray-800">
       </ng-template>
 
       <!-- Toggle button -->
-<label class="absolute right-0 top-0 mt-2 mr-2 text-gray-300 hover:text-white focus:outline-none cursor-pointer">
-  <input type="checkbox" (change)="toggleInputType(controlName)" class="hidden">
-  <span class="block w-16 h-6 bg-gray-600 rounded-full transition-colors duration-300 ease-in-out relative" [class.bg-gray-400]="isTextarea(controlName)">
-    <span class="block absolute w-4 h-4 bg-white rounded-full translate-x-1 transition-transform duration-300 ease-in-out transform translate-y-1" [class.translate-x-11]="isTextarea(controlName)"></span>
-  </span>
-</label>
+      <label class="absolute right-0 top-0 mt-2 mr-2 text-gray-300 hover:text-white focus:outline-none cursor-pointer">
+        <input type="checkbox" (change)="toggleInputType(controlName)" class="hidden">
+        <span class="block w-16 h-6 bg-gray-600 rounded-full transition-colors duration-300 ease-in-out relative"
+          [class.bg-gray-400]="isTextarea(controlName)">
+          <span
+            class="block absolute w-4 h-4 bg-white rounded-full translate-x-1 transition-transform duration-300 ease-in-out transform translate-y-1"
+            [class.translate-x-11]="isTextarea(controlName)"></span>
+        </span>
+      </label>
 
     </div>
   </div>
@@ -66,9 +81,9 @@
 
 
 <ng-template #array let-controlName="controlName" let-controlArray="control">
+  <label class="block text-gray-200 text-md font-bold mb-2 mt-4">{{ controlName }}</label>
+  <app-card>
     <div class="flex flex-col">
-    <label class="block text-gray-200 text-md font-bold mb-2 mt-4">{{ controlName }}</label>
-    <app-card >
       <ng-container *ngFor="let item of controlArray.controls; let i = index; trackBy: trackByFn;">
         <ng-container *ngIf="isFormGroup(item); else notGroup">
           <ng-container *ngTemplateOutlet="object; context:{controlName: i, control: item}"></ng-container>
@@ -82,9 +97,12 @@
           </ng-template>
         </ng-template>
       </ng-container>
-      <button type="button" (click)="addToArray(controlArray)" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">Add Element</button>
-    </app-card>
-  </div>
+    </div>
+    <button type="button" (click)="addToArray(controlArray)"
+      class="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transform transition duration-500 ease-in-out hover:scale-105">
+      Add Element
+    </button>
+
+  </app-card>
 
 </ng-template>
-  
