@@ -1,18 +1,22 @@
 <form [formGroup]="dynamicForm" (ngSubmit)="submit()" class="mx-4 my-2">
   <h1 class="text-gray-200 text-3xl font-bold mb-2">{{title}}</h1>
   <ng-container *ngFor="let ctrl of getObjectEntries(dynamicForm.controls) trackBy: trackByFn">
-      <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
-        <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+    <ng-container *ngIf="isFormGroup(ctrl.value); else notGroup">
+      <ng-container *ngTemplateOutlet="object; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
+    </ng-container>
+    <ng-template #notGroup>
+      <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
+        <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
       </ng-container>
-      <ng-template #notGroup>
-        <ng-container *ngIf="isFormArray(ctrl.value); else singleControl">
-          <ng-container *ngTemplateOutlet="array; context:{controlName: ctrl.key, control: ctrl.value}"></ng-container>
-        </ng-container>
-        <ng-template #singleControl>
-          <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
-        </ng-template>
+      <ng-template #singleControl>
+        <ng-container *ngTemplateOutlet="value; context: {controlName: ctrl.key, control: ctrl.value}"></ng-container>
       </ng-template>
+    </ng-template>
   </ng-container>
+  <button type="button" (click)="submit()"
+    class="text-lg mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded transform transition duration-500 ease-in-out hover:scale-105">
+    Submit
+  </button>
 </form>
 
 

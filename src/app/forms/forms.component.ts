@@ -86,7 +86,6 @@ export class FormsComponent implements OnInit {
   createControl(data: any): FormControl {
     return this.fb.control(data, Validators.required);
   }
-
   submit(): void {
     const formValues = this.removeEmptyFields(this.dynamicForm.value);
     const jsonData = JSON.stringify(formValues, null, 2); // Prettify JSON string
@@ -94,9 +93,14 @@ export class FormsComponent implements OnInit {
     const href = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = href;
-    link.download = 'data.json'; // You can name the file whatever you want
-    link.click();
-    URL.revokeObjectURL(href);
+    // Extract a name for the file from the form data or use the title
+    console.log('form Values:', formValues)
+    const name = (formValues['Scene Name'] || formValues['Chapter']?.['Name'] || formValues['Character Name'] || formValues['Book Title'] || this.title || 'file') + '.json';
+    link.download = name; // You can name the file whatever you want
+    document.body.appendChild(link); // Append the link to the body
+    link.click(); // Trigger the download
+    document.body.removeChild(link); // Remove the link from the body
+    URL.revokeObjectURL(href); // Clean up
   }
 
   removeEmptyFields(data: any): any {
