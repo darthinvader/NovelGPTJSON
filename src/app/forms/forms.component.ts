@@ -16,6 +16,7 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dynamicForm = this.createGroup(this.providedJSON)
+    delete this.dynamicForm.controls['default']
   }
 
   // Define a property to keep track of toggled fields
