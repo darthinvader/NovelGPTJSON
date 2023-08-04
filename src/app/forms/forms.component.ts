@@ -96,7 +96,7 @@ export class FormsComponent implements OnInit {
     link.href = href;
     // Extract a name for the file from the form data or use the title
     console.log('form Values:', formValues)
-    const name = (formValues['Scene Name'] || formValues['Chapter']?.['Name'] || formValues['Character Name'] || formValues['Book Title'] || this.title || 'file') + '.json';
+    const name = (formValues['Scene Name'] || formValues['Chapter']?.['Name'] || formValues['Name'] || formValues['Book Title'] || this.title || 'file') + '.json';
     link.download = name; // You can name the file whatever you want
     document.body.appendChild(link); // Append the link to the body
     link.click(); // Trigger the download
