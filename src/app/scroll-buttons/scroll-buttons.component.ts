@@ -16,10 +16,11 @@ export class ScrollButtonsComponent {
   scrollToStart(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
   scrollToMid(): void {
-    const middle = document.body.scrollHeight / 2;
-    window.scrollTo({ top: middle, behavior: 'smooth' });
+    const middle = (document.body.scrollHeight / 2);
+    const adjustment = window.innerHeight / 2;
+    const newScrollPosition = middle - adjustment;
+    window.scrollTo({ top: newScrollPosition, behavior: 'smooth' });
   }
 
   scrollToEnd(): void {
