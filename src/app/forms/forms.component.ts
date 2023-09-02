@@ -15,8 +15,21 @@ export class FormsComponent implements OnInit {
   constructor(private fb: FormBuilder) { this.dynamicForm = this.fb.group({}); }
 
   ngOnInit(): void {
-    this.dynamicForm = this.createGroup(this.providedJSON)
-    delete this.dynamicForm.controls['default']
+    this.dynamicForm = this.createGroup(this.providedJSON);
+    delete this.dynamicForm.controls['default'];
+
+    // Check if there's form data in localStorage
+    const storedFormData = localStorage.getItem('formData');
+    if (storedFormData) {
+      // If found, populate the form
+      this.updateForm(this.dynamicForm, JSON.parse(storedFormData));
+    }
+
+    // Subscribe to form changes
+    this.dynamicForm.valueChanges.subscribe(value => {
+      // Save form data to localStorage
+      localStorage.setItem('formData', JSON.stringify(value));
+    });
   }
 
   // Define a property to keep track of toggled fields
