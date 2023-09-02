@@ -10,25 +10,24 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export class FormsComponent implements OnInit {
   @Input() providedJSON?: JSON
   @Input() title?: string
+  @Input() pageId?: string  // <-- Add this line to differentiate forms
   dynamicForm: FormGroup;
-  faCoffee = faCoffee
-  constructor(private fb: FormBuilder) { this.dynamicForm = this.fb.group({}); }
+
+  constructor(private fb: FormBuilder) {
+    this.dynamicForm = this.fb.group({});
+  }
 
   ngOnInit(): void {
     this.dynamicForm = this.createGroup(this.providedJSON);
     delete this.dynamicForm.controls['default'];
 
-    // Check if there's form data in localStorage
-    const storedFormData = localStorage.getItem('formData');
+    const storedFormData = localStorage.getItem(`formData_${this.pageId}`); // <-- Update this line
     if (storedFormData) {
-      // If found, populate the form
       this.updateForm(this.dynamicForm, JSON.parse(storedFormData));
     }
 
-    // Subscribe to form changes
     this.dynamicForm.valueChanges.subscribe(value => {
-      // Save form data to localStorage
-      localStorage.setItem('formData', JSON.stringify(value));
+      localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(value));  // <-- Update this line
     });
   }
 

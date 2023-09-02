@@ -14,10 +14,10 @@ import { ScrollButtonsComponent } from './scroll-buttons/scroll-buttons.componen
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
-  { path: 'book', component: WrapperComponent, data: { input: book, title: 'Book' } },
-  { path: 'chapter', component: WrapperComponent, data: { input: chapter, title: 'Chapter' } },
-  { path: 'character', component: WrapperComponent, data: { input: character, title: 'Character' } },
-  { path: 'scene', component: WrapperComponent, data: { input: scene, title: 'Scene' } },
+  { path: 'book', component: WrapperComponent, data: { input: book, title: 'Book', pageId: '1' } },
+  { path: 'chapter', component: WrapperComponent, data: { input: chapter, title: 'Chapter', pageId: '2' } },
+  { path: 'character', component: WrapperComponent, data: { input: character, title: 'Character', pageId: '3' } },
+  { path: 'scene', component: WrapperComponent, data: { input: scene, title: 'Scene', pageId: '4  ' } },
 ];
 
 @NgModule({
