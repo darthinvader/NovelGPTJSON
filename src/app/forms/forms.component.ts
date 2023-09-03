@@ -12,7 +12,7 @@ export class FormsComponent implements OnInit {
   @Input() title?: string
   @Input() pageId?: string  // <-- differentiate forms
   dynamicForm: FormGroup;
-  
+
   constructor(private fb: FormBuilder) {
     this.dynamicForm = this.fb.group({});
   }
@@ -135,6 +135,7 @@ export class FormsComponent implements OnInit {
 
       // Now, update the form using this parsed JSON
       this.updateForm(this.dynamicForm, parsedJson);
+      localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(this.dynamicForm.value));
     };
 
     if (file) {
@@ -145,32 +146,31 @@ export class FormsComponent implements OnInit {
   // Add a recursive method to update the form
   updateForm(control: AbstractControl, data: any): void {
     if (control instanceof FormGroup) {
-      for (const controlName in control.controls) {
-        if (control.controls.hasOwnProperty(controlName) && data.hasOwnProperty(controlName)) {
-          this.updateForm(control.controls[controlName], data[controlName]);
+      const group = control;
+      Object.keys(group.controls).forEach(key => {
+        const ctrl = group.controls[key];
+        if (data && data.hasOwnProperty(key)) {
+          this.updateForm(ctrl, data[key]);
         }
-      }
-    } else if (control instanceof FormArray) {
-      // First, clear the existing FormArray
-      while (control.length) {
-        control.removeAt(0);
-      }
-      // Now, iterate through the provided data array
-      data.forEach((element: any, index: number) => {
-        if (Array.isArray(element)) {
-          control.push(this.createArray(element) as unknown as FormControl);
-        } else if (typeof element === 'object') {
-          control.push(this.createGroup(element) as unknown as FormControl);
-        } else {
-          control.push(this.createControl(element));
-        }
-        // Update the newly created control with the corresponding data
-        this.updateForm(control.at(index), element);
       });
-    } else if (control instanceof FormControl && data !== null && data !== undefined) {
-      control.setValue(data);
+    } else if (control instanceof FormArray) {
+      const array = control;
+      for (let i = 0; i < data.length; i++) {
+        if (i >= array.length) {
+          // Here you could push new FormGroup or FormArray if your data structure demands it
+          array.push(this.createControl(data[i]));
+        }
+        this.updateForm(array.at(i), data[i]);
+      }
+      // Optionally, remove controls if the incoming array is shorter
+      while (array.length > data.length) {
+        array.removeAt(array.length - 1);
+      }
+    } else if (control instanceof FormControl) {
+      control.setValue(data, { emitEvent: false });
     }
   }
+
 
   removeEmptyFields(data: any): any {
     if (typeof data !== 'object') return data;
