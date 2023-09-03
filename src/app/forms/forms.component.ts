@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-forms',
@@ -8,59 +7,70 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-  @Input() providedJSON?: JSON
-  @Input() title?: string
-  @Input() pageId?: string  // <-- differentiate forms
+  @Input() providedJSON?: JSON;
+  @Input() title?: string;
+  @Input() pageId?: string;
+
   dynamicForm: FormGroup;
+  toggledFields: { [key: string]: boolean } = {};
 
   constructor(private fb: FormBuilder) {
     this.dynamicForm = this.fb.group({});
   }
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.handleStoredData();
+    this.subscribeToFormChanges();
+  }
+
+  private initializeForm() {
     this.dynamicForm = this.createGroup(this.providedJSON);
     delete this.dynamicForm.controls['default'];
+  }
 
-    const storedFormData = localStorage.getItem(`formData_${this.pageId}`); // <-- Update this line
+  private handleStoredData() {
+    const storedFormData = localStorage.getItem(`formData_${this.pageId}`);
     if (storedFormData) {
       this.updateForm(this.dynamicForm, JSON.parse(storedFormData));
     }
+  }
 
+  private subscribeToFormChanges() {
     this.dynamicForm.valueChanges.subscribe(value => {
-      localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(value));  // <-- Update this line
+      localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(value));
     });
   }
+
   clearAll = () => {
-    this.dynamicForm = this.createGroup(this.providedJSON)
-    delete this.dynamicForm.controls['default'];
+    this.initializeForm();
     localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(this.dynamicForm.value));
   }
 
-  // Define a property to keep track of toggled fields
-  toggledFields: { [key: string]: boolean } = {};
-
-  // Define a function to toggle the input type
   toggleInputType(controlName: string): void {
     this.toggledFields[controlName] = !this.toggledFields[controlName];
   }
 
-  // Define a function to determine whether the textarea should be shown
   isTextarea(controlName: string): boolean {
     return this.toggledFields[controlName];
   }
 
-  createGroup(data: any): FormGroup {
+  private createGroup(data: any): FormGroup {
     const group = this.fb.group({});
-    Object.keys(data).forEach((key) => {
-      if (Array.isArray(data[key])) {
-        group.addControl(key, this.createArray(data[key])); // expect array of form control
-      } else if (typeof data[key] === 'object') {
-        group.addControl(key, this.createGroup(data[key])); // expect form group
-      } else {
-        group.addControl(key, this.createControl(data[key])); // expect form control
-      }
+    Object.keys(data).forEach(key => {
+      group.addControl(key, this.determineControlType(data[key]));
     });
     return group;
+  }
+
+  private determineControlType(data: any): AbstractControl {
+    if (Array.isArray(data)) {
+      return this.createArray(data);
+    } else if (typeof data === 'object') {
+      return this.createGroup(data);
+    } else {
+      return this.createControl(data);
+    }
   }
 
   createArray(data: any[]): FormArray {
