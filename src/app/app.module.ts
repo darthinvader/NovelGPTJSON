@@ -12,6 +12,7 @@ import * as scene from '../assets/Scene.json';
 import { WrapperComponent } from './wrapper/wrapper.component';
 import { ScrollButtonsComponent } from './scroll-buttons/scroll-buttons.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 
 const routes: Routes = [
   { path: 'book', component: WrapperComponent, data: { input: book, title: 'Book', pageId: '1' } },
@@ -26,7 +27,8 @@ const routes: Routes = [
     CardComponent,
     FormsComponent,
     WrapperComponent,
-    ScrollButtonsComponent
+    ScrollButtonsComponent,
+    BottomBarComponent
   ],
   imports: [
     BrowserModule,

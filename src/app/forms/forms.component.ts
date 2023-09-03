@@ -10,9 +10,9 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export class FormsComponent implements OnInit {
   @Input() providedJSON?: JSON
   @Input() title?: string
-  @Input() pageId?: string  // <-- Add this line to differentiate forms
+  @Input() pageId?: string  // <-- differentiate forms
   dynamicForm: FormGroup;
-
+  
   constructor(private fb: FormBuilder) {
     this.dynamicForm = this.fb.group({});
   }
@@ -30,8 +30,10 @@ export class FormsComponent implements OnInit {
       localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(value));  // <-- Update this line
     });
   }
-  clearAll() {
+  clearAll = () => {
     this.dynamicForm = this.createGroup(this.providedJSON)
+    delete this.dynamicForm.controls['default'];
+    localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(this.dynamicForm.value));
   }
 
   // Define a property to keep track of toggled fields
@@ -102,7 +104,7 @@ export class FormsComponent implements OnInit {
   createControl(data: any): FormControl {
     return this.fb.control(data, Validators.required);
   }
-  submit(): void {
+  download = () => {
     const formValues = this.removeEmptyFields(this.dynamicForm.value);
     const jsonData = JSON.stringify(formValues, null, 2); // Prettify JSON string
     const blob = new Blob([jsonData], { type: 'text/json;charset=utf-8' });
@@ -121,7 +123,7 @@ export class FormsComponent implements OnInit {
 
 
   // In your component class, add a method to handle the file input
-  handleFileInput(event: Event): void {
+  handleFileInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
     const file = files.item(0);
