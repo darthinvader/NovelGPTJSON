@@ -30,6 +30,9 @@ export class FormsComponent implements OnInit {
       localStorage.setItem(`formData_${this.pageId}`, JSON.stringify(value));  // <-- Update this line
     });
   }
+  clearAll() {
+    this.dynamicForm = this.createGroup(this.providedJSON)
+  }
 
   // Define a property to keep track of toggled fields
   toggledFields: { [key: string]: boolean } = {};
